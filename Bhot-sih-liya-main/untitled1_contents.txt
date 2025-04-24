@@ -1,0 +1,112 @@
+CONTENTS OF UNTITLED1.IPYNB
+===========================
+
+This notebook contains code for implementing a frame interpolation autoencoder using TensorFlow. Here's a detailed breakdown of its contents:
+
+1. INITIAL SETUP & IMPORTS
+-------------------------
+- TensorFlow installation command: pip install tensorflow
+- Key imports:
+  * numpy
+  * matplotlib.pyplot
+  * tensorflow.keras components (datasets, models, layers)
+
+2. MNIST DATASET IMPLEMENTATION
+------------------------------
+- Loads MNIST dataset
+- Normalizes and reshapes data
+- Image shape: (28, 28, 1)
+- Data preprocessing:
+  * Expands dimensions
+  * Normalizes to [0,1] range
+
+3. AUTOENCODER ARCHITECTURE
+--------------------------
+- Encoder:
+  * Input layer: (28, 28, 1)
+  * Conv2D layers: 32 -> 16 -> 8 filters
+  * Uses ReLU activation and 'same' padding
+
+- Decoder:
+  * Conv2DTranspose layers: 16 -> 32 -> 1 filters
+  * Final activation: sigmoid
+  * Maintains input dimensions
+
+4. TRAINING CONFIGURATION
+------------------------
+- Optimizer: Adam
+- Loss: binary_crossentropy
+- Training parameters:
+  * Epochs: 50
+  * Batch size: 256
+  * Includes validation data
+  * Shuffling enabled
+
+5. VISUALIZATION CODE
+--------------------
+- Plots original vs reconstructed images
+- Displays n=10 image comparisons
+- Uses matplotlib for visualization
+- Grayscale colormap
+
+6. DATASET HANDLING
+------------------
+- Custom dataset loading from directory
+- Image preprocessing:
+  * Resizing to (512, 512)
+  * Grayscale conversion
+  * Normalization
+- Creates image pairs for training
+
+7. ENHANCED AUTOENCODER MODEL
+----------------------------
+- Dual input architecture
+- Feature map combination using Concatenate layer
+- Wind data integration
+- Dropout layers for regularization
+- Enhanced decoder architecture
+
+8. MODEL SAVING
+--------------
+- Saves model in multiple formats:
+  * .h5 format
+  * .keras format
+  * Directory format
+
+9. VISUALIZATION AND COMPARISON
+-----------------------------
+- Functions for loading and displaying images
+- Comparison visualization between:
+  * Input images
+  * Generated images
+  * Ground truth (when available)
+- Performance metrics visualization
+
+10. CLOUD MASKING IMPLEMENTATION
+-------------------------------
+- Image masking functionality
+- Threshold-based cloud detection
+- Mask application to images
+- Saves masked images separately
+
+11. WIND DATA INTEGRATION
+------------------------
+- Loads wind data from arrow_info_array.npy
+- Resizes and preprocesses wind data
+- Integrates with main model architecture
+
+12. PERFORMANCE ANALYSIS
+-----------------------
+- Timing metrics for frame generation
+- FPS calculation
+- Temporal consistency analysis
+- Visualization of performance metrics
+
+13. MODEL EVALUATION
+-------------------
+- Comparison with ground truth
+- Visual quality assessment
+- Temporal consistency checks
+- Performance metrics plotting
+
+Note: The notebook contains both experimental and production-ready code, with various iterations and improvements of the frame interpolation model. The final implementation includes cloud masking and wind data integration for improved accuracy in weather image interpolation.

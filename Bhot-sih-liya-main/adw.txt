@@ -1,0 +1,28 @@
+import matplotlib.pyplot as plt
+from mpl_toolkits.basemap import Basemap
+import numpy as np
+
+# Load your thermal image
+thermal_image = plt.imread('thermal_image.png')
+
+# Create a new figure
+fig = plt.figure(figsize=(12, 6))
+m = Basemap(projection='cyl', resolution='c', llcrnrlat=-90, urcrnrlat=90, llcrnrlon=-180, urcrnrlon=180)
+
+# Draw the thermal image onto the map
+m.imshow(thermal_image, origin='upper')
+
+# Sample wind data (lat, lon, magnitude, direction)
+wind_data = [(0, 0, 5, 45), (10, 10, 10, 90)]  # Example data
+
+# Convert wind data to map projection
+for lat, lon, magnitude, direction in wind_data:
+    x, y = m(lon, lat)
+    u = magnitude * np.cos(np.radians(direction))
+    v = magnitude * np.sin(np.radians(direction))
+    
+    # Draw wind arrows
+    m.quiver(x, y, u, v, angles='xy', scale_units='xy', scale=1, color='blue', alpha=0.7)
+
+plt.title('Thermal Image with Wind Data')
+plt.show()
